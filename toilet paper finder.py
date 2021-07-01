@@ -475,9 +475,10 @@ def get_html_content():
     list_of_links = json.loads(list_of_links)
     link_file.close()
     driver = webdriver.Chrome('chromedriver_win32/chromedriver.exe')  # Optional argument, if not specified will search path.
-    driver.get('http://www.indeed.com/');
-    search_box = driver.find_element_by_name('q')
-    search_box.send_keys('Software Developer')
+    driver.get('https://www.smithsfoodanddrug.com/search?query=toilet%20paper&searchType=natural&fulfillment=all');
+    search_box = driver.find_element_by_id('searchbutton')
+    time.sleep(5)
+    search_box.send_keys('toiletpaper')
     search_box.submit()
     pages = True
     current_url = driver.current_url
@@ -488,7 +489,7 @@ def get_html_content():
     list_of_job_urls = []
     for url in all_urls:
         if url.get('href'):
-            value = url.get('href')
+            value = urzl.get('href')
             if re.match(r'/pagead.*', value) or re.match(r'/rc/.*', value):
                 newline = f'https://www.indeed.com{value}'
                 list_of_job_urls.append(newline)
